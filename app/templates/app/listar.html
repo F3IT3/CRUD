@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    {% if usuarios %}
+        <h1>Lista de Usuários</h1>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Opções</th>
+            </tr>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.nome }}</td>
+                    <td>{{ usuario.telefone }}</td>
+                    <td>
+                        <button><a href="{% url 'app:atualizar' usuario.id %}">Atualizar</a></button>
+                        <button><a href="{% url 'app:detalhes' usuario.id %}">Detalhes</a></button>
+                        <button><a href="{% url 'app:deletar' usuario.id %}">Deletar</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <button><a href="{% url 'app:criar' %}">Criar Usuário</a></button>
+    {% else %}
+        <h1>Não há usuários cadastrados</h1>
+    {% endif %}
+</body>
+</html>
